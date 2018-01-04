@@ -9,6 +9,7 @@
 <div id="container"></div>
 
 <script>
+
 var dates = [
     "Jan 10, 2018 14:00:00",
     "Jan 10, 2018 18:00:00",
@@ -18,10 +19,9 @@ var dates = [
     "Feb 21, 2018 10:00:00"
 ];
 
-
 var container = document.getElementById("container");
 for (var i = 0; i < dates.length; i++) {
-   container.innerHTML += '<div class="box"></div>';
+   container.innerHTML += '<div class="box">' + dates[i] + '</div>';
 }
 
 </script>
