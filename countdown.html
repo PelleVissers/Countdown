@@ -1,12 +1,63 @@
-<!-- Display the countdown timer in an element -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    div#container {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        max-width: 80%;
+        margin-top: 80px;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
+    .box{
+        display: block;
+        border: 0;
+        border-radius: 2px;
+        text-align: center;
+        color: white;
+        padding: 10px;
+        position: relative;
+        width: 260px;
+        height: auto;
+        z-index: 5;
+        margin: 10px;
+        overflow: hidden;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 0.7em;
+        letter-spacing: 1px;
+        background-color: #313131;
+        cursor:pointer;
+        outline: none;
+    }
+
+    .box:hover {
+        opacity: 0.7;
+        transition: 0.5s;
+    }
+
+    .box:hover {
+        opacity: 0.7;
+        transition: 0.5s;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="container"></div>
 
 <p id="Dagen"></p>
 <p id="Uren"></p>
 <p id="Minuten"></p>
 <p id="Seconden"></p>
 
-<div id="container"></div>
 
 <script>
 
@@ -21,25 +72,25 @@ var dates = [
 
 var container = document.getElementById("container");
 for (var i = 0; i < dates.length; i++) {
-   container.innerHTML += '<div class="box">' + dates[i] + '</div>';
+   container.innerHTML += '<div id = "box' + i  + '"class="box" onclick="myFunction();">' + dates[i] + '</div>';
 }
 
-</script>
-<script>
+function myFunction() {
+var clickedDate = "Jan 10, 2018 14:15:25"
+   
+// Bepaal de datum waar de countdown naar moet aflopen
+var countDownDate = new Date(clickedDate).getTime();
 
-// Set the date we're counting down to
-var countDownDate = new Date("Jan 10, 2018 14:15:25").getTime();
-
-// Update the count down every 1 second
+// Update de countdown per seconde
 var x = setInterval(function() {
 
-  // Get todays date and time
+  // De huidige datum en tijd
   var now = new Date().getTime();
 
-  // Find the distance between now an the count down date
+  // FBereken het verschil tussen nu en de afteldatum
   var distance = countDownDate - now;
 
-  // Time calculations for days, hours, minutes and seconds
+  // Tijd berekeningen voor dagen, uren, minuten en seconden.
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -50,10 +101,17 @@ var x = setInterval(function() {
   var min = document.getElementById("Minuten").innerHTML = minutes;
   var sec = document.getElementById("Seconden").innerHTML = seconds;
   
-  // If the count down is finished, write some text 
+  // Schrijf iets als de countdown is afgelopen
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    // document.getElementById("").innerHTML = "AFGELOPEN";
   }
 }, 1000);
+
+}
+
 </script>
+</body>
+</html>
+
+
