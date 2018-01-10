@@ -14,6 +14,20 @@
         display: flex;
         flex-wrap: wrap;
     }
+    div#countdown {
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        margin-top: 80px;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    p {
+        display: inline;
+        margin: 10px;
+    }
 
     .box{
         display: block;
@@ -53,19 +67,23 @@
 
 <div id="container"></div>
 
-<p id="Dagen"></p>
-<p id="Uren"></p>
-<p id="Minuten"></p>
-<p id="Seconden"></p>
+<div id="countdown">
+  <p id="Dagen"></p>
+  <p id="Uren"></p>
+  <p id="Minuten"></p>
+  <p id="Seconden"></p>
+</div>
 
 
 <script>
 
+
+// Beschikbare datums, aantal is oneindig
 var dates = [
-    "Jan 10, 2018 14:00:00",
+    "Jan 10, 2018 11:00:00",
     "Jan 10, 2018 18:00:00",
-    "Jan 12, 2018 14:00:00",
-    "Jan 12, 2018 18:00:00",
+    "Jan 20, 2018 14:00:00",
+    "Jan 20, 2018 18:00:00",
     "Feb 02, 2018 08:00:00",
     "Feb 21, 2018 10:00:00"
 ];
@@ -107,19 +125,51 @@ function myFunction() {
      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-     var dag = document.getElementById("Dagen").innerHTML = days;
-     var uur = document.getElementById("Uren").innerHTML = hours;
-     var min = document.getElementById("Minuten").innerHTML = minutes;
-     var sec = document.getElementById("Seconden").innerHTML = seconds;
-  
-     // Schrijf iets als de countdown is afgelopen
+
+     // Display de tijd, wanneer een waarde op 1 terecht komt wordt het woord enkelvoud
+     if (days == 1) {
+      var dag = document.getElementById("Dagen").innerHTML = days + ' dag' ;
+     } else {
+      var dag = document.getElementById("Dagen").innerHTML = days + ' dagen' ;
+     }
+
+     if (hours == 1) {
+      var uur = document.getElementById("Uren").innerHTML = hours + ' uur' ;
+     } else {
+      var uur = document.getElementById("Uren").innerHTML = hours + ' uren' ;
+     }
+
+     if (minutes == 1) {
+      var min = document.getElementById("Minuten").innerHTML = minutes + ' minuut' ;
+     } else {
+      var min = document.getElementById("Minuten").innerHTML = minutes + ' minuten' ;
+     }
+
+     if (seconds == 1) {
+      var sec = document.getElementById("Seconden").innerHTML = seconds + ' seconde' ;
+     } else { 
+      var sec = document.getElementById("Seconden").innerHTML = seconds + ' seconden' ;
+     }
+    
+
+     // Laat weten wanneer de countdown is afgelopen en verwijder alle tijden
      if (distance < 0) {
        clearInterval(x);
-      // document.getElementById("").innerHTML = "AFGELOPEN";
+       var element = document.getElementById("Dagen");
+       element.parentNode.removeChild(element);
+       var element = document.getElementById("Uren");
+       element.parentNode.removeChild(element);
+       var element = document.getElementById("Minuten");
+       element.parentNode.removeChild(element);
+       var element = document.getElementById("Seconden");
+       element.parentNode.removeChild(element);
+
+       var countdown = document.getElementById("countdown").innerHTML = "Deze datum is verstreken";
      }
    }, 1000);
 
 }
+
 
 </script>
 </body>
