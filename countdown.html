@@ -85,11 +85,12 @@ for (var i = 0; i < classname.length; i++) {
 
 function myFunction() {
   console.log(this.innerHTML);
- 
-   var clickedDate = this.innerHTML;
-   
+  
    // Bepaal de datum waar de countdown naar moet aflopen
-   var countDownDate = new Date(clickedDate).getTime();
+   var countDownDate = new Date(this.innerHTML).getTime();
+
+   // Verwijder de container van alle datums
+   container.parentElement.removeChild(container);
 
    // Update de countdown per seconde
    var x = setInterval(function() {
